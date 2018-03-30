@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.ListDao">
+
+	<select id="select_list_by_attr"
+		resultMap="select_list_by_flbh2_map">
+		SELECT
+		spu.id as spu_id, spu.*,sku.id as sku_id,sku.*,tm.id
+		as tm_id,tm.*
+		FROM
+		t_mall_product spu,
+		t_mall_sku sku,
+		t_mall_trade_mark
+		tm
+		WHERE
+		spu.Id =
+		sku.shp_id
+		AND spu.pp_id = tm.Id
+		AND spu.flbh2 =
+		#{flbh2}
+		${subSql}
+	</select>
+
+
+	<select id="select_list_by_flbh2"
+		resultMap="select_list_by_flbh2_map">
+		SELECT
+		spu.id as spu_id, spu.*,sku.id as sku_id,sku.*,tm.id
+		as tm_id,tm.*
+		FROM
+		t_mall_product spu,
+		t_mall_sku sku,
+		t_mall_trade_mark
+		tm
+		WHERE
+		spu.Id = sku.shp_id
+		AND spu.pp_id = tm.Id
+		AND spu.flbh2 =
+		#{flbh2}
+	</select>
+
+	<resultMap type="com.atguigu.bean.OBJECT_T_MALL_SKU"
+		id="select_list_by_flbh2_map" autoMapping="true">
+		<!-- 封装下面这个sku_id是干啥的？？因为继承了sku -->
+		<id column="sku_id" property="id" />
+
+		<association property="spu"
+			javaType="com.atguigu.bean.T_MALL_PRODUCT" autoMapping="true">
+			<id column="spu_id" property="id" />
+		</association>
+
+		<association property="tm"
+			javaType="com.atguigu.bean.T_MALL_TRADE_MARK" autoMapping="true">
+			<id column="tm_id" property="id" />
+		</association>
+	</resultMap>
+</mapper>
