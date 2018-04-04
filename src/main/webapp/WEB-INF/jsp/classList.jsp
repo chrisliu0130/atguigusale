@@ -17,12 +17,16 @@
 			$(data).each(function(i,json){
 				// 将分类集合的内容生成<option>对象加载到下拉列表中
 				$("#class_1_ul").append("<li  onmouseover='get_class_2(this.value)'  value="+json.id+"><a href='javascript:;'>"+json.flmch1+"</a></li>");
+				
 			});
 		});
 	});
 	
 	function get_class_2(class_1_id){
-
+		 var hei=$("#class_1_ul").height();
+		 //alert(hei[0]);
+			// $("#class_2_ul").attr("height",hei[0]);
+		
 		$.getJSON("js/json/class_2_"+class_1_id+".js",function(data){
 			// 用js循环json的分类集合
 			$("#class_2_ul").empty();
@@ -31,7 +35,17 @@
 				$("#class_2_ul").append("<li value="+json.id+"><a href='goto_list.do?flbh2="+json.id+"' target='_blank'>"+json.flmch2+"</a></li>");
 			});
 		});
+		
+		
 	}
+	
+	function mouseover(){
+		$("#class_2_ul").attr("style","display:block");
+	}
+	
+	function mouseout(){
+		$("#class_2_ul").attr("style","display:none"); 
+	} 
 </script>
 <title>硅谷商城</title>
 </head>
@@ -42,9 +56,9 @@
 				<div class="left_nav">
 					全部商品分类
 					<div class="nav_mini">
-						<ul  id="class_1_ul">
+						<ul onmouseover="mouseover()" onmouseout="mouseout()" id="class_1_ul">
 							<li>
-								<div id="class_2_ul" class="two_nav"></div>
+								<div  onmouseover="mouseover()" onmouseout="mouseout()" id="class_2_ul" class="two_nav"  ></div>
 							</li>
 						</ul>
 					</div>

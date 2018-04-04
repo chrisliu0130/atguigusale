@@ -23,18 +23,7 @@ public class IndexController {
 	@Autowired
 	ListService listService;
 
-	@RequestMapping("goto_sku_detail")
-	public String goto_sku_detail(int sku_id, int spu_id, ModelMap map) {
-		
-		map.put("sku_id", sku_id);
-		map.put("spu_id", spu_id);
-		
-		
-		//查询商品详细信息对象
-		
-		//查询同一个spu_id下其他的sku商品信息
-		return "skuDetail";
-	}
+	
 
 	@RequestMapping("goto_list")
 	public String goto_list(int flbh2, ModelMap map) {

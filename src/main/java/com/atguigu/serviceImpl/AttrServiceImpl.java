@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.bean.OBJECT_T_MALL_ATTR;
-import com.atguigu.bean.OBJECT_T_MALL_SKU;
 import com.atguigu.dao.AttrDao;
 import com.atguigu.service.AttrService;
 
